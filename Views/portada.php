@@ -370,7 +370,7 @@ for ($i = 27016; $i <= 27022; $i++)
 
 	try
 	{
-		$query->Connect('45.235.99.146', $i, 1, SourceQuery::SOURCE);
+		$query->Connect('45.235.99.146', $i, 1, \xPaw\SourceQuery\SourceQuery::SOURCE);
 		$serverInfo = $query->GetInfo();
 
 		if($serverInfo !== false)

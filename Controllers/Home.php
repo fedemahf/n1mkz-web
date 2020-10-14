@@ -6,7 +6,6 @@ class Home extends BaseController
 {
 	public function index()
 	{
-		$data['session'] = $this->session;
 		$estaConectado = false;
 
 		if($this->session->has('steam_id'))
@@ -45,11 +44,11 @@ class Home extends BaseController
 
 			if(isset($row))
 			{
-				$data['usuario_vip_dias_restantes'] = $row->dias_restantes;
+				$dataContenido['usuario_vip_dias_restantes'] = $row->dias_restantes;
 			}
 			else
 			{
-				$data['usuario_vip_dias_restantes'] = 0;
+				$dataContenido['usuario_vip_dias_restantes'] = 0;
 			}
 
 			// ----------------------------------------------------------------
@@ -65,9 +64,9 @@ class Home extends BaseController
 			
 			if(isset($row))
 			{
-				$data['playerrank'] = $row;
+				$dataContenido['playerrank'] = $row;
 				
-				$data['playerrank']->position = $this
+				$dataContenido['playerrank']->position = $this
 					->db_kztimer
 						->table('playerrank')
 						->selectCount('points')
@@ -76,7 +75,7 @@ class Home extends BaseController
 					->getRow()
 					->points;
 				
-				$data['playerrank']->positionTotal = $this
+				$dataContenido['playerrank']->positionTotal = $this
 					->db_kztimer
 						->table('playerrank')
 						->selectCount('points')
@@ -90,7 +89,7 @@ class Home extends BaseController
 			
 			// ----------------------------------------------------------------
 			
-			$data['usuario_rol_tier6'] = false;
+			$dataContenido['usuario_rol_tier6'] = false;
 
 			$row = $this->db_kztimer
 				->query(
@@ -128,7 +127,7 @@ class Home extends BaseController
 
 			if(isset($row))
 			{
-				$data['usuario_rol_tier6'] = true;
+				$dataContenido['usuario_rol_tier6'] = true;
 			}
 			else
 			{
@@ -178,13 +177,13 @@ class Home extends BaseController
 
 				if(isset($row))
 				{
-					$data['usuario_rol_tier6'] = true;
+					$dataContenido['usuario_rol_tier6'] = true;
 				}
 			}
 
 			// ----------------------------------------------------------------
 			
-			$data['usuario_rol_tier7'] = false;
+			$dataContenido['usuario_rol_tier7'] = false;
 
 			$row = $this->db_kztimer
 				->query(
@@ -205,7 +204,7 @@ class Home extends BaseController
 
 			if(isset($row))
 			{
-				$data['usuario_rol_tier7'] = true;
+				$dataContenido['usuario_rol_tier7'] = true;
 			}
 			else
 			{
@@ -242,13 +241,14 @@ class Home extends BaseController
 
 				if(isset($row))
 				{
-					$data['usuario_rol_tier7'] = true;
+					$dataContenido['usuario_rol_tier7'] = true;
 				}
 			}
 		}
-
-		$data['estaConectado'] = $estaConectado;
-		return view('portada', $data);
+		
+		$dataVip['estaConectado'] = $estaConectado;
+		$dataContenido['session'] = $this->session;
+		return view('templates/portada', ['dataContenido' => $dataContenido, 'dataVip' => $dataVip]);
 	}
 
 	public function login()

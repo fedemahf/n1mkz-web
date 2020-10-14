@@ -492,5 +492,6 @@ if($tablaCreada)
 			return false;
 		}
 		</script>
+		<p>test</p>
 	</body>
 </html>

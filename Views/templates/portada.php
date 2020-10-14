@@ -1,9 +1,9 @@
 <?php
 
-view('portada/header');
-view('portada/contenido', $dataContenido);
-view('portada/vip', $dataVip);
-view('portada/sourcequery');
-view('portada/footer');
+echo view('portada/header');
+echo view('portada/contenido', $dataContenido);
+echo view('portada/vip', $dataVip);
+echo view('portada/sourcequery');
+echo view('portada/footer');
 
 ?>

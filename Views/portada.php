@@ -1,4 +1,4 @@
-<?php use xPaw\SourceQuery\SourceQuery; ?>
+<?php /* use xPaw\SourceQuery\SourceQuery; */ ?>
 <!doctype html>
 <html lang="es">
 	<head>
@@ -366,7 +366,7 @@ $servidores = 0;
 
 for ($i = 27016; $i <= 27022; $i++)
 {
-	$query = new SourceQuery();
+	$query = new \xPaw\SourceQuery\SourceQuery();
 
 	try
 	{

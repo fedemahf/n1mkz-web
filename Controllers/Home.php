@@ -247,6 +247,7 @@ class Home extends BaseController
 		}
 		
 		$dataVip['estaConectado'] = $estaConectado;
+		$dataContenido['estaConectado'] = $estaConectado;
 		$dataContenido['session'] = $this->session;
 		return view('templates/portada', ['dataContenido' => $dataContenido, 'dataVip' => $dataVip]);
 	}

@@ -13,7 +13,8 @@ class Cron extends BaseController
 		if($_SERVER['REMOTE_ADDR'] != '45.235.99.146')
 		{
 			// return redirect()->to('/');
-			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+			echo $_SERVER['REMOTE_ADDR'] . PHP_EOL;
+			// throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 		}
 	}
 

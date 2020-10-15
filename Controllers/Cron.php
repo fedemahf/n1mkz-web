@@ -10,16 +10,14 @@ class Cron extends BaseController
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
 
-		if($_SERVER['REMOTE_ADDR'] != '45.235.99.146')
+		if(!is_cli())
 		{
-			// return redirect()->to('/');
-			echo $_SERVER['REMOTE_ADDR'] . PHP_EOL;
-			// throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
 		}
 	}
 
 	public function index()
 	{
-		echo "ok";
+		echo "ok" . PHP_EOL;
 	}
 }

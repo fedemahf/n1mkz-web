@@ -36,15 +36,15 @@ class Home extends BaseController
 				$this
 				->db
 					->table('usuario_vip')
-					->select('dias_restantes')
+					->select('(UNIX_TIMESTAMP(`fecha_final`) - UNIX_TIMESTAMP(NOW())) as `segundos_restantes`', FALSE)
 					->where('usuario_id', $this->session->get('usuario_id'))
 					->limit(1)
 				->get()
 				->getRow();
 
-			if(isset($row))
+			if(isset($row) && $row->segundos_restantes > 0)
 			{
-				$dataContenido['usuario_vip_dias_restantes'] = $row->dias_restantes;
+				$dataContenido['usuario_vip_dias_restantes'] = round($row->segundos_restantes / 86400);
 			}
 			else
 			{

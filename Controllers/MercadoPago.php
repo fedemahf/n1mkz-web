@@ -283,20 +283,23 @@ class Mercadopago extends BaseController
 			}
 
 			// Básico, 31 días
-			$diasVip = 31;
+			// $diasVip = 31;
+			$mesesVip = 1;
 
 			switch($producto)
 			{
 				case 2:
-					$diasVip *= 3; // 3 meses
+					// $diasVip *= 3; // 3 meses
+					$mesesVip = 3;
 				break;
 				case 3:
-					$diasVip *= 6; // 6 meses
+					// $diasVip *= 6; // 6 meses
+					$mesesVip = 6;
 				break;
 			}
 
-			// Margen de 1 día
-			$diasVip += 1;
+			// // Margen de 1 día
+			// $diasVip += 1;
 
 			// Comprobar si tenía VIP activo
 			$row = $this->db
@@ -312,7 +315,8 @@ class Mercadopago extends BaseController
 				// Sumar 32 días
 				$this->db
 					->table('usuario_vip')
-					->set('dias_restantes', 'dias_restantes+' . $diasVip, FALSE)
+					// ->set('dias_restantes', 'dias_restantes+' . $diasVip, FALSE)
+					->set('fecha_final', 'DATE_ADD(`fecha_final`, INTERVAL '. $producto .' MONTH)', FALSE)
 					->where('usuario_id', $usuario_id)
 					->update();
 			}
@@ -327,8 +331,10 @@ class Mercadopago extends BaseController
 					->insert(
 						array(
 							'usuario_id' => $usuario_id,
-							'dias_restantes' => $diasVip
-						)
+							// 'dias_restantes' => $diasVip
+							'fecha_inicio' => 'NOW()',
+							'fecha_final' => 'DATE_ADD(NOW(), INTERVAL '. $producto .' MONTH)'
+						), FALSE
 					);
 
 				// Comprobar si tenía armas modificadas

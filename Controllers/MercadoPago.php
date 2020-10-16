@@ -430,7 +430,7 @@ class Mercadopago extends BaseController
 			// Eliminar filas asociadas a la membresía VIP
 			$this->db->table('usuario_vip')->delete(['usuario_id' => $usuario_id]);
 			if($admin_id != 0) $this->db->table('sm_admins_groups')->delete(['admin_id' => $admin_id, 'group_id' => 2]);
-			$this->db_sourcemod_local->table('sm_admins')->delete(['identity' => $steamID, 'flags' => 'a'])
+			$this->db_sourcemod_local->table('sm_admins')->delete(['identity' => $steamID, 'flags' => 'a']);
 		}
 	}
 

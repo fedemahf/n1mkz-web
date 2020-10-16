@@ -1,5 +1,7 @@
 <?php namespace App\Controllers;
 
+use \App\Controllers\Vip;
+
 class Cron extends BaseController
 {
 	/**
@@ -18,8 +20,8 @@ class Cron extends BaseController
 
 	public function index()
 	{
-		$vipController = new \App\Controllers\Vip();
-		$vipController->desactivarVip(16);
+		// $vipController = new \App\Controllers\Vip();
+		$this->desactivarVip(16);
 		echo "ok" . PHP_EOL;
 	}
 }

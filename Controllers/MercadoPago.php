@@ -197,7 +197,7 @@ class Mercadopago extends BaseController
 		return redirect()->to('/');
 	}
 	
-	protected function activarVip($usuario_id, $producto)
+	public function activarVip($usuario_id, $producto)
 	{
 		// Obtener steam_id a partir del usuario_id
 		$row = $this->db
@@ -367,7 +367,7 @@ class Mercadopago extends BaseController
 		}
 	}
 
-	protected function desactivarVip($usuario_id)
+	public function desactivarVip($usuario_id)
 	{
 		// Obtener steam_id a partir del usuario_id
 		$row = $this->db

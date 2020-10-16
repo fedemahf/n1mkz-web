@@ -56,27 +56,28 @@ else
 ?>
 								<p class="card-text">Estadísticas KZT: ranking <?=$playerrank->position;?> de <?=$playerrank->positionTotal;?> con <?=$playerrank->points;?> puntos. Mapas PRO/TP/total: <?=$playerrank->finishedmapspro;?>/<?=$playerrank->finishedmapstp;?>/<?=$playerrank->finishedmaps;?>.</p>
 <?php
-		if($usuario_vip_dias_restantes > 0)
-		{
-			if($usuario_vip_dias_restantes == 1)
-			{
-?>
-								<p class="card-text">&#x1F451; Te queda un día de membresía VIP.</p>
-<?php
-			}
-			else
-			{
-?>
-								<p class="card-text">&#x1F451; Te quedan <?=$usuario_vip_dias_restantes?> días de membresía VIP.</p>
-<?php
-			}
-		}
 	}
 	else
 	{
 ?>
 								<p class="card-text">No se han encontrado estadísticas sobre KZ Timer.</p>
 <?php
+	}
+
+	if($usuario_vip_dias_restantes > 0)
+	{
+		if($usuario_vip_dias_restantes == 1)
+		{
+?>
+							<p class="card-text">&#x1F451; Te queda un día de membresía VIP.</p>
+<?php
+		}
+		else
+		{
+?>
+							<p class="card-text">&#x1F451; Te quedan <?=$usuario_vip_dias_restantes?> días de membresía VIP.</p>
+<?php
+		}
 	}
 ?>
 								<!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->

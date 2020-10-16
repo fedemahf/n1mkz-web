@@ -42,19 +42,9 @@ class Home extends BaseController
 				->get()
 				->getRow();
 
-			if(isset($row))
+			if(isset($row) && $row->segundos_restantes > 0)
 			{
-				echo "<!-- \$row->segundos_restantes = {$row->segundos_restantes} -->" . PHP_EOL;
-
-				if($row->segundos_restantes > 0)
-				{
-					$dataContenido['usuario_vip_dias_restantes'] = round($row->segundos_restantes / 86400);
-					echo "<!-- \$dataContenido['usuario_vip_dias_restantes'] = ". $dataContenido['usuario_vip_dias_restantes'] ." -->" . PHP_EOL;
-				}
-				else
-				{
-					$dataContenido['usuario_vip_dias_restantes'] = 0;
-				}
+				$dataContenido['usuario_vip_dias_restantes'] = round($row->segundos_restantes / 86400);
 			}
 			else
 			{

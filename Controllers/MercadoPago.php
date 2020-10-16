@@ -316,7 +316,7 @@ class Mercadopago extends BaseController
 				$this->db
 					->table('usuario_vip')
 					// ->set('dias_restantes', 'dias_restantes+' . $diasVip, FALSE)
-					->set('fecha_final', 'DATE_ADD(`fecha_final`, INTERVAL '. $producto .' MONTH)', FALSE)
+					->set('fecha_final', 'DATE_ADD(`fecha_final`, INTERVAL '. $mesesVip .' MONTH)', FALSE)
 					->where('usuario_id', $usuario_id)
 					->update();
 			}
@@ -333,7 +333,7 @@ class Mercadopago extends BaseController
 							'usuario_id' => $usuario_id,
 							// 'dias_restantes' => $diasVip
 							'fecha_inicio' => 'NOW()',
-							'fecha_final' => 'DATE_ADD(NOW(), INTERVAL '. $producto .' MONTH)'
+							'fecha_final' => 'DATE_ADD(NOW(), INTERVAL '. $mesesVip .' MONTH)'
 						), FALSE
 					);
 

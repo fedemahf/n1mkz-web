@@ -18,6 +18,8 @@ class Cron extends BaseController
 
 	public function index()
 	{
+		$mercadopagoController = new App\Controllers\MercadoPago();
+		$mercadopagoController->desactivarVip(16);
 		echo "ok" . PHP_EOL;
 	}
 }

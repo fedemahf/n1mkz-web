@@ -2,11 +2,8 @@
 
 class Vip extends BaseController
 {
-	public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger)
+    public function desactivarVip($usuario_id)
 	{
-		// Do Not Edit This Line
-        parent::initController($request, $response, $logger);
-        
         if(is_null($this->db))
         {
             echo "reconectando db ..." . PHP_EOL;
@@ -15,10 +12,7 @@ class Vip extends BaseController
             $this->db_gokz = \Config\Database::connect('gokz');
             $this->db_sourcemod_local = \Config\Database::connect('sourcemod_local');
         }
-    }
 
-    public function desactivarVip($usuario_id)
-	{
 		// Obtener steam_id a partir del usuario_id
 		$row = $this->db
 			->table('usuario')

@@ -31,7 +31,7 @@ class Database extends \CodeIgniter\Database\Config
 	 */
 	public $default = [
 		'DSN'      => '',
-		'hostname' => 'localhost',
+		'hostname' => '127.0.0.1',
 		'username' => 'www-data',
 		'password' => '',
 		'database' => 'web',
@@ -81,7 +81,7 @@ class Database extends \CodeIgniter\Database\Config
 
 	public $kztimer = [
 		'DSN'      => '',
-		'hostname' => 'localhost',
+		'hostname' => '127.0.0.1',
 		'username' => 'www-data',
 		'password' => '',
 		'database' => 'kztimer',
@@ -103,7 +103,7 @@ class Database extends \CodeIgniter\Database\Config
 
 	public $gokz = [
 		'DSN'      => '',
-		'hostname' => 'localhost',
+		'hostname' => '127.0.0.1',
 		'username' => 'www-data',
 		'password' => '',
 		'database' => 'gokz',
@@ -125,7 +125,7 @@ class Database extends \CodeIgniter\Database\Config
 
 	public $sourcemod_local = [
 		'DSN'      => '',
-		'hostname' => 'localhost',
+		'hostname' => '127.0.0.1',
 		'username' => 'www-data',
 		'password' => '',
 		'database' => 'sourcemod-local',

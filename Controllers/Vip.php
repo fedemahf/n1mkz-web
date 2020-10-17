@@ -86,7 +86,7 @@ class Vip extends BaseController
 
 			// Eliminar filas asociadas a la membresía VIP
 			$this->db_web->table('usuario_vip')->delete(['usuario_id' => $usuario_id]);
-			if($admin_id != 0) $this->db_web->table('sm_admins_groups')->delete(['admin_id' => $admin_id, 'group_id' => 2]);
+			if($admin_id != 0) $this->db_sourcemod_local->table('sm_admins_groups')->delete(['admin_id' => $admin_id, 'group_id' => 2]);
 			$this->db_sourcemod_local->table('sm_admins')->delete(['identity' => $steamID, 'flags' => 'a']);
 		}
     }

@@ -10,10 +10,10 @@ class Cron extends BaseController
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
 
-		if(!is_cli())
-		{
-			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-		}
+		// if(!is_cli())
+		// {
+		// 	throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+		// }
 	}
 
 	public function index()

@@ -18,8 +18,20 @@ class Cron extends BaseController
 
 	public function index()
 	{
-		$vipController = new \App\Controllers\Vip($this->db, $this->db_sourcemod_local);
-		$vipController->desactivarVip(16);
-		echo "ok" . PHP_EOL;
+		// $vipController = new \App\Controllers\Vip($this->db, $this->db_sourcemod_local);
+		// $vipController->desactivarVip(16);
+		// echo "ok" . PHP_EOL;
+
+		
+		$query =
+			$this->db
+				->table('usuario_vip')
+				// ->select('(UNIX_TIMESTAMP(`fecha_final`) - UNIX_TIMESTAMP(NOW())) as `segundos_restantes`', FALSE)
+				->where('(UNIX_TIMESTAMP(`fecha_final`) - UNIX_TIMESTAMP(NOW())) >', "0", false)
+			// ->get();
+			->getCompiledSelect();
+		
+		echo $query . PHP_EOL;
+
 	}
 }

@@ -43,7 +43,7 @@ $routes->get('/mercadopago/(:segment)', 'MercadoPago::index/$1');
 $routes->get('/discord/conectar', 'Discord::conectar');
 $routes->get('/discord/desconectar', 'Discord::desconectar');
 $routes->get('/sourcequery', 'Test_SourceQuery');
-$routes->get('/cron', 'Cron');
+// $routes->get('/cron', 'Cron');
 $routes->cli('/cron', 'Cron');
 // $routes->get('/steam/(:any)', 'Steam::$1');
 $routes->get('/(:any)', 'Home::$1');

@@ -18,7 +18,6 @@ use CodeIgniter\Controller;
 
 class BaseController extends Controller
 {
-
 	/**
 	 * An array of helpers to be loaded automatically upon
 	 * class instantiation. These helpers will be available
@@ -43,10 +42,11 @@ class BaseController extends Controller
 		// $this->session = \Config\Services::session();
 		$this->session = \Config\Services::session();
 		$this->request = \Config\Services::request();
-		$this->db = \Config\Database::connect();
-		$this->db_kztimer = \Config\Database::connect('kztimer');
-		$this->db_gokz = \Config\Database::connect('gokz');
-		$this->db_sourcemod_local = \Config\Database::connect('sourcemod_local');
-	}
 
+		$databaseModel = model('App\Models\DatabaseModel');
+		$this->db =& $databaseModel->web;
+		$this->db_kztimer =& $databaseModel->kztimer;
+		$this->db_gokz =& $databaseModel->gokz;
+		$this->db_sourcemod_local =& $databaseModel->sourcemod_local;
+	}
 }

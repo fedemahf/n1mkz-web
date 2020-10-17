@@ -39,6 +39,7 @@ class Home extends BaseController
 				$this
 				->db
 					->table('usuario_vip')
+					->select('*')
 					->select('(UNIX_TIMESTAMP(`fecha_final`) - UNIX_TIMESTAMP(NOW())) as `segundos_restantes`', FALSE)
 					->where('usuario_id', $this->session->get('usuario_id'))
 					->limit(1)
@@ -47,13 +48,25 @@ class Home extends BaseController
 
 			if(isset($row))
 			{
+				// Comprobar que no haya caducado la suscripción
 				if($row->segundos_restantes > 0)
 				{
 					$dataContenido['usuario_vip_dias_restantes'] = round($row->segundos_restantes / 86400);
 				}
 				else
 				{
-					// El VIP caducó pero aún tiene permisos. Retirarlos.
+					// Guardar registro
+					$this->db
+						->table('registro_usuario_vip')
+						->insert(
+							array(
+								'usuario_id' => $row->usuario_id,
+								'fecha_inicio' => $row->fecha_inicio,
+								'fecha_final' => $row->fecha_final
+							)
+						);
+
+					// Retirar VIP
 					$vipController = new \App\Controllers\Vip($this->db, $this->db_sourcemod_local);
 					$vipController->desactivarVip($this->session->get('usuario_id'));
 				}

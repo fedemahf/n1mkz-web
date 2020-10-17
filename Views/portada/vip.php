@@ -9,7 +9,6 @@
 							<li><b>Slot reservado.</b> Acceso a los servidores aunque estén llenos, siempre y cuando no estén ocupados los slots reservados.</li>
 							<li><b>Etiqueta exclusiva.</b> Etiqueta exclusiva en el nombre en los servidores KZTimer.</li>
 							<li><b>Rol en Discord.</b> Se te asignará un rol especial y desbloquearás una categoría de canales exclusiva para usuarios VIP.</li>
-							<li><b>¡Y más!</b> Así como el !extend —cuyo funcionamiento es exclusivo de nuestros servidores—, en un futuro podríamos agregar más beneficios VIP. ¿Tenés alguna idea? ¡Compartila en Discord!</li>
 						</ul>
 						<p class="card-text">Una vez abonado el pago, el VIP se activará automáticamente, tanto en los servidores de CS:GO como en Discord. Si estás conectado en un servidor de CS:GO, es posible que debas reconectar o esperar que cambie el mapa.</p>
 						<div class="card-deck mb-1 text-center">

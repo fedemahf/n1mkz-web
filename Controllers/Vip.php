@@ -2,10 +2,17 @@
 
 class Vip extends BaseController
 {
+	public function __construct()
+	{
+		parent::__construct();
+		echo "__construct" . PHP_EOL;
+	}
+
 	public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger)
 	{
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
+		echo "initController" . PHP_EOL;
 	}
 
     public function desactivarVip($usuario_id)

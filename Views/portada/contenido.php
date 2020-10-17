@@ -64,9 +64,15 @@ else
 <?php
 	}
 
-	if($usuario_vip_dias_restantes > 0)
+	if($usuario_vip_dias_restantes != -1)
 	{
-		if($usuario_vip_dias_restantes == 1)
+		if($usuario_vip_dias_restantes == 0)
+		{
+?>
+							<p class="card-text">&#x1F451; Tu membresía VIP finaliza en menos de 24 horas.</p>
+<?php
+		}
+		else if($usuario_vip_dias_restantes == 1)
 		{
 ?>
 							<p class="card-text">&#x1F451; Te queda un día de membresía VIP.</p>

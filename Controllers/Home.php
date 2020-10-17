@@ -32,6 +32,9 @@ class Home extends BaseController
 
 			// ----------------------------------------------------------------
 
+			// Inicializar variable
+			$dataContenido['usuario_vip_dias_restantes'] = -1;
+
 			$row =
 				$this
 				->db
@@ -54,10 +57,6 @@ class Home extends BaseController
 					$vipController = new \App\Controllers\Vip($this->db, $this->db_sourcemod_local);
 					$vipController->desactivarVip($this->session->get('usuario_id'));
 				}
-			}
-			else
-			{
-				$dataContenido['usuario_vip_dias_restantes'] = 0;
 			}
 
 			// ----------------------------------------------------------------

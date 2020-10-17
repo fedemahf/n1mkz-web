@@ -42,9 +42,18 @@ class Home extends BaseController
 				->get()
 				->getRow();
 
-			if(isset($row) && $row->segundos_restantes > 0)
+			if(isset($row))
 			{
-				$dataContenido['usuario_vip_dias_restantes'] = round($row->segundos_restantes / 86400);
+				if($row->segundos_restantes > 0)
+				{
+					$dataContenido['usuario_vip_dias_restantes'] = round($row->segundos_restantes / 86400);
+				}
+				else
+				{
+					// El VIP caducó pero aún tiene permisos. Retirarlos.
+					$vipController = new \App\Controllers\Vip($this->db, $this->db_sourcemod_local);
+					$vipController->desactivarVip($this->session->get('usuario_id'));
+				}
 			}
 			else
 			{

@@ -4,7 +4,8 @@ class Vip extends BaseController
 {
 	public function __construct()
 	{
-		parent::__construct();
+		// parent::__construct();
+		parent::initController($request, $response, $logger);
 		echo "__construct" . PHP_EOL;
 	}
 

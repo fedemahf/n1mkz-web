@@ -1,10 +1,21 @@
 <?php namespace App\Controllers;
 
+use CodeIgniter\Database\ConnectionInterface;
+
 class Vip extends BaseController
 {
+	protected $db_web;
+	protected $db_sourcemod_local;
+
+	public function __construct(ConnectionInterface &$db_web, ConnectionInterface &$db_sourcemod_local)
+	{
+		$this->db_web =& $db_web;
+		$this->db_sourcemod_local =& $db_sourcemod_local;
+	}
+
     public function desactivarVip($usuario_id)
 	{
-		$this->db = model('App\Models\DatabaseModel');
+		// $this->db = model('App\Models\DatabaseModel');
 
         // if(is_null($this->db))
         // {
@@ -12,11 +23,11 @@ class Vip extends BaseController
         //     $this->db = \Config\Database::connect();
         //     $this->db_kztimer = \Config\Database::connect('kztimer');
         //     $this->db_gokz = \Config\Database::connect('gokz');
-        //     $this->db->sourcemod_local = \Config\Database::connect('sourcemod_local');
+        //     $this->db_sourcemod_local = \Config\Database::connect('sourcemod_local');
         // }
 
 		// Obtener steam_id a partir del usuario_id
-		$row = $this->db->web
+		$row = $this->db_web
 			->table('usuario')
 			->select('steam_id')
 			// ->select('steam_id64')
@@ -38,7 +49,7 @@ class Vip extends BaseController
 			);
 
 			// Obtener admin_id de sm_admins
-			$row = $this->db->sourcemod_local
+			$row = $this->db_sourcemod_local
 				->table('sm_admins')
 				->select('id')
 				->where('authtype', 'steam')
@@ -54,7 +65,7 @@ class Vip extends BaseController
 			}
 
 			// Comprobar si tiene armas modificadas
-			$row = $this->db->sourcemod_local
+			$row = $this->db_sourcemod_local
 				->table('weapons')
 				->select('*')
 				->where('steamid', $steamID)
@@ -65,18 +76,18 @@ class Vip extends BaseController
 			if(isset($row))
 			{
 				// Eliminar posibles valores obsoletos en db
-				$this->db->sourcemod_local->table('weapons_disabled')->delete(['steamid' => $steamID]);
-				$this->db->sourcemod_local->table('weapons_timestamps')->delete(['steamid' => $steamID]);
+				$this->db_sourcemod_local->table('weapons_disabled')->delete(['steamid' => $steamID]);
+				$this->db_sourcemod_local->table('weapons_timestamps')->delete(['steamid' => $steamID]);
 				
 				// Archivar valores activos
-				$this->db->sourcemod_local->query("INSERT INTO `weapons_disabled` SELECT * FROM `weapons` WHERE `steamid`='$steamID'");
-				$this->db->sourcemod_local->table('weapons')->delete(['steamid' => $steamID]);
+				$this->db_sourcemod_local->query("INSERT INTO `weapons_disabled` SELECT * FROM `weapons` WHERE `steamid`='$steamID'");
+				$this->db_sourcemod_local->table('weapons')->delete(['steamid' => $steamID]);
 			}
 
 			// Eliminar filas asociadas a la membresía VIP
-			$this->db->web->table('usuario_vip')->delete(['usuario_id' => $usuario_id]);
-			if($admin_id != 0) $this->db->web->table('sm_admins_groups')->delete(['admin_id' => $admin_id, 'group_id' => 2]);
-			$this->db->sourcemod_local->table('sm_admins')->delete(['identity' => $steamID, 'flags' => 'a']);
+			$this->db_web->table('usuario_vip')->delete(['usuario_id' => $usuario_id]);
+			if($admin_id != 0) $this->db_web->table('sm_admins_groups')->delete(['admin_id' => $admin_id, 'group_id' => 2]);
+			$this->db_sourcemod_local->table('sm_admins')->delete(['identity' => $steamID, 'flags' => 'a']);
 		}
     }
 }

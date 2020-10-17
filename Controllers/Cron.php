@@ -18,7 +18,7 @@ class Cron extends BaseController
 
 	public function index()
 	{
-		$vipController = new \App\Controllers\Vip();
+		$vipController = new \App\Controllers\Vip($this->db, $this->db_sourcemod_local);
 		$vipController->desactivarVip(16);
 		echo "ok" . PHP_EOL;
 	}

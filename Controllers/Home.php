@@ -121,25 +121,34 @@ class Home extends BaseController
 					WHERE
 						`steamid` = '" . $steamID2 . "' AND
 						(
-							`mapname` LIKE 'kz_afterlife' OR
-							`mapname` LIKE 'kz_alien_city' OR
-							`mapname` LIKE 'kz_blackness' OR
-							`mapname` LIKE 'kz_continuum' OR
-							`mapname` LIKE 'kz_erratum_v2' OR
-							`mapname` LIKE 'kz_gemischte_gefuehlslagen' OR
-							`mapname` LIKE 'kz_goquicklol_v2' OR
-							`mapname` LIKE 'kz_lionheart' OR
-							`mapname` LIKE 'kz_oloramasa' OR
-							`mapname` LIKE 'kz_p1' OR
-							`mapname` LIKE 'kz_purgatory' OR
-							`mapname` LIKE 'kz_retribution_v2_final' OR
-							`mapname` LIKE 'kz_shell' OR
-							`mapname` LIKE 'kz_slidebober' OR
-							`mapname` LIKE 'kz_slide_deee' OR
-							`mapname` LIKE 'kz_slidemap' OR
-							`mapname` LIKE 'kz_slide_svn_extreme' OR
-							`mapname` LIKE 'kz_spacemario_h' OR
-							`mapname` LIKE 'kz_thrombosis'
+							`mapname` = 'kz_afterlife' OR
+							`mapname` = 'kz_alien_city' OR
+							`mapname` = 'kz_angina_final' OR
+							`mapname` = 'kz_blackness' OR
+							`mapname` = 'kz_chloroplast' OR
+							`mapname` = 'kz_continuum' OR
+							`mapname` = 'kz_gemischte_gefuehlslagen' OR
+							`mapname` = 'kz_goquicklol_v2' OR
+							`mapname` = 'kz_hemochromatosis' OR
+							`mapname` = 'kz_kzro_hardvalley' OR
+							`mapname` = 'kz_lionheart' OR
+							`mapname` = 'kz_mieszaneuczucia' OR
+							`mapname` = 'kz_oloramasa' OR
+							`mapname` = 'kz_p1' OR
+							`mapname` = 'kz_purgatory' OR
+							`mapname` = 'kz_retribution_v2_final' OR
+							`mapname` = 'kz_shell' OR
+							`mapname` = 'kz_slidebober' OR
+							`mapname` = 'kz_slidemap' OR
+							`mapname` = 'kz_slide_deee' OR
+							`mapname` = 'kz_slide_svn_extreme' OR
+							`mapname` = 'kz_slowrun_global_fix' OR
+							`mapname` = 'kz_sp1_bloodyljs' OR
+							`mapname` = 'kz_spacemario_h' OR
+							`mapname` = 'kz_thrombosis' OR
+							`mapname` = 'kz_zaloopazxc' OR
+							`mapname` = 'skz_odious_v2' OR
+							`mapname` = 'kz_htc_purgatory'
 						)
 					GROUP BY
 						`steamid`"
@@ -167,23 +176,32 @@ class Home extends BaseController
 							(
 								`Maps`.`Name` = 'kz_afterlife' OR
 								`Maps`.`Name` = 'kz_alien_city' OR
+								`Maps`.`Name` = 'kz_angina_final' OR
 								`Maps`.`Name` = 'kz_blackness' OR
+								`Maps`.`Name` = 'kz_chloroplast' OR
 								`Maps`.`Name` = 'kz_continuum' OR
-								`Maps`.`Name` = 'kz_erratum_v2' OR
 								`Maps`.`Name` = 'kz_gemischte_gefuehlslagen' OR
 								`Maps`.`Name` = 'kz_goquicklol_v2' OR
+								`Maps`.`Name` = 'kz_hemochromatosis' OR
+								`Maps`.`Name` = 'kz_kzro_hardvalley' OR
 								`Maps`.`Name` = 'kz_lionheart' OR
+								`Maps`.`Name` = 'kz_mieszaneuczucia' OR
 								`Maps`.`Name` = 'kz_oloramasa' OR
 								`Maps`.`Name` = 'kz_p1' OR
 								`Maps`.`Name` = 'kz_purgatory' OR
 								`Maps`.`Name` = 'kz_retribution_v2_final' OR
 								`Maps`.`Name` = 'kz_shell' OR
 								`Maps`.`Name` = 'kz_slidebober' OR
-								`Maps`.`Name` = 'kz_slide_deee' OR
 								`Maps`.`Name` = 'kz_slidemap' OR
+								`Maps`.`Name` = 'kz_slide_deee' OR
 								`Maps`.`Name` = 'kz_slide_svn_extreme' OR
+								`Maps`.`Name` = 'kz_slowrun_global_fix' OR
+								`Maps`.`Name` = 'kz_sp1_bloodyljs' OR
 								`Maps`.`Name` = 'kz_spacemario_h' OR
-								`Maps`.`Name` = 'kz_thrombosis'
+								`Maps`.`Name` = 'kz_thrombosis' OR
+								`Maps`.`Name` = 'kz_zaloopazxc' OR
+								`Maps`.`Name` = 'skz_odious_v2' OR
+								`Maps`.`Name` = 'kz_htc_purgatory'
 							)
 							AND
 								`MapCourses`.`MapID` = `Maps`.`MapID`
@@ -216,6 +234,7 @@ class Home extends BaseController
 						`steamid` = '$steamID2' AND
 						(
 							`mapname` = 'kz_erratum_v2' OR
+							`mapname` = 'kz_unmake' OR
 							`mapname` = 'skz_makalaka'
 						)
 					GROUP BY
@@ -243,6 +262,7 @@ class Home extends BaseController
 						WHERE
 							(
 								`Maps`.`Name` = 'kz_erratum_v2' OR
+								`Maps`.`Name` = 'kz_unmake' OR
 								`Maps`.`Name` = 'skz_makalaka'
 							)
 							AND

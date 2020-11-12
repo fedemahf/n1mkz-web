@@ -147,8 +147,7 @@ class Home extends BaseController
 							`mapname` = 'kz_spacemario_h' OR
 							`mapname` = 'kz_thrombosis' OR
 							`mapname` = 'kz_zaloopazxc' OR
-							`mapname` = 'skz_odious_v2' OR
-							`mapname` = 'kz_htc_purgatory'
+							`mapname` = 'skz_odious_v2'
 						)
 					GROUP BY
 						`steamid`"
@@ -200,8 +199,7 @@ class Home extends BaseController
 								`Maps`.`Name` = 'kz_spacemario_h' OR
 								`Maps`.`Name` = 'kz_thrombosis' OR
 								`Maps`.`Name` = 'kz_zaloopazxc' OR
-								`Maps`.`Name` = 'skz_odious_v2' OR
-								`Maps`.`Name` = 'kz_htc_purgatory'
+								`Maps`.`Name` = 'skz_odious_v2'
 							)
 							AND
 								`MapCourses`.`MapID` = `Maps`.`MapID`

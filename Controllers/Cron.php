@@ -44,8 +44,6 @@ class Cron extends BaseController
 			$usuarioListaSteam[] = $row->steam_id;
 			$usuarioListaDiscord[] = $row->discord_id;
 		}
-
-		// var_dump($usuarioLista);
 		
 		try {
 			$ch = curl_init("http://kztimerglobal.com/api/v2.0/records/top/world_records?limit=1000");

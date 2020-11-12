@@ -9,6 +9,7 @@ class Discord extends BaseController
 	public $role_id_vip = 751975378968641617;
 	public $role_id_tier6 = 736054232389779498;
 	public $role_id_tier7 = 749315682780577843;
+	public $role_id_world_record = 776560731653931019;
 	public $channel_id_vip = 751983414797795348;
 
 	// public function index()

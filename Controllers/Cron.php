@@ -33,7 +33,7 @@ class Cron extends BaseController
 		set_time_limit(0);
 		
 		try {
-			$ch = curl_init("http://kztimerglobal.com/api/v2.0/records/top/world_records?limit=1000");
+			$ch = curl_init("http://kztimerglobal.com/api/v2.0/records/top/world_records?limit=2");
 			curl_setopt_array($ch, array(
 				CURLOPT_RETURNTRANSFER    => true,     // return web page
 				CURLOPT_HEADER            => false,    // don't return headers
@@ -49,6 +49,8 @@ class Cron extends BaseController
 			curl_close($ch);
 	
 			var_dump($map);
+			echo PHP_EOL .  PHP_EOL .  PHP_EOL;
+			echo $map[0]->steamid64;
 		} catch (Exception $e) {
 			echo "Error $value: $e";
 		}

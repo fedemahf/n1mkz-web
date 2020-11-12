@@ -32,7 +32,7 @@ class Cron extends BaseController
 	{
 		set_time_limit(0);
 
-		$discordController = new App\Controllers\Discord();
+		$discordController = new \App\Controllers\Discord();
 		$discord = $discordController->bot();
 
 		$usuarioListaSteam = array();

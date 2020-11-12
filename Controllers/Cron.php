@@ -46,7 +46,7 @@ class Cron extends BaseController
 		}
 		
 		try {
-			$ch = curl_init("http://kztimerglobal.com/api/v2.0/records/top/world_records?limit=1000");
+			$ch = curl_init("http://kztimerglobal.com/api/v2.0/records/top/world_records?limit=1000&stages=0");
 			curl_setopt_array($ch, array(
 				CURLOPT_RETURNTRANSFER    => true,     // return web page
 				CURLOPT_HEADER            => false,    // don't return headers

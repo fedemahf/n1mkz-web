@@ -4,7 +4,7 @@ class Cron extends BaseController
 {
 	public function index()
 	{
-		$vipController = new \App\Controllers\Vip($this->db, $this->db_sourcemod_local);
+		$vipController = new \App\Controllers\Vip();
 
 		$query =
 			$this->db

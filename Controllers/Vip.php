@@ -7,25 +7,15 @@ class Vip extends BaseController
 	protected $db_web;
 	protected $db_sourcemod_local;
 
-	public function __construct(ConnectionInterface &$db_web, ConnectionInterface &$db_sourcemod_local)
+	public function __construct()
 	{
-		$this->db_web =& $db_web;
-		$this->db_sourcemod_local =& $db_sourcemod_local;
+		$db = model('App\Models\DatabaseModel');
+		$this->db_web =& $db->web;
+		$this->db_sourcemod_local =& $db->sourcemod_local;
 	}
 
     public function desactivarVip($usuario_id)
 	{
-		// $this->db = model('App\Models\DatabaseModel');
-
-        // if(is_null($this->db))
-        // {
-        //     echo "reconectando db ..." . PHP_EOL;
-        //     $this->db = \Config\Database::connect();
-        //     $this->db_kztimer = \Config\Database::connect('kztimer');
-        //     $this->db_gokz = \Config\Database::connect('gokz');
-        //     $this->db_sourcemod_local = \Config\Database::connect('sourcemod_local');
-        // }
-
 		// Obtener steam_id a partir del usuario_id
 		$row = $this->db_web
 			->table('usuario')

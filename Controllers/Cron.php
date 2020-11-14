@@ -95,7 +95,7 @@ class Cron extends BaseController
 					{
 						// Añadir rol
 						$discord->guild->addGuildMemberRole(['guild.id' => $discordController->guild_id, 'user.id' => $row->user->id, 'role.id' => $discordController->role_id_world_record]);
-						$discord->channel->createMessage(['channel.id' => $discordController->channel_id_verified, 'content' => ":medal: Parece que <@{$discord_id}> ganó su primer récord mundial. ¡Felicidades!"]);
+						$discord->channel->createMessage(['channel.id' => $discordController->channel_id_verified, 'content' => ":medal: Parece que <@{" . $row->user->id . "}> ganó su primer récord mundial. ¡Felicidades!"]);
 					}
 				}
 				else

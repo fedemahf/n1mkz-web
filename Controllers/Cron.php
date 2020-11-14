@@ -70,8 +70,8 @@ class Cron extends BaseController
 	
 				if ($pos !== false)
 				{
-					$usuarioListaWrSteam[] = $usuarioListaSteam[$pos];
-					// $usuarioListaWrDiscord[] = $usuarioListaDiscord[$pos];
+					// $usuarioListaWrSteam[] = $usuarioListaSteam[$pos];
+					$usuarioListaWrDiscord[] = $usuarioListaDiscord[$pos];
 					// echo "steamid64=\"" . $usuarioListaSteam[$pos] . "\", discord_id=\"" . $usuarioListaDiscord[$pos] . "\"" . PHP_EOL;
 					// $discord->guild->addGuildMemberRole(['guild.id' => $discordController->guild_id, 'user.id' => intval($usuarioListaDiscord[$pos]), 'role.id' => $discordController->role_id_world_record]);
 				}

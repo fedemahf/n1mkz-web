@@ -37,6 +37,8 @@ class Cron extends BaseController
 
 		$usuarioListaSteam = array();
 		$usuarioListaDiscord = array();
+		// $usuarioListaWrSteam = array();
+		$usuarioListaWrDiscord = array();
 		$query = $this->db->query('SELECT `usuario`.`steam_id`, `usuario_discord`.`discord_id` FROM `usuario`, `usuario_discord` WHERE `usuario`.`id` = `usuario_discord`.`usuario_id`');
 
 		foreach($query->getResult() as $row)
@@ -68,12 +70,54 @@ class Cron extends BaseController
 	
 				if ($pos !== false)
 				{
-					echo "steamid64=\"" . $usuarioListaSteam[$pos] . "\", discord_id=\"" . $usuarioListaDiscord[$pos] . "\"" . PHP_EOL;
-					$discord->guild->addGuildMemberRole(['guild.id' => $discordController->guild_id, 'user.id' => intval($usuarioListaDiscord[$pos]), 'role.id' => $discordController->role_id_world_record]);
+					$usuarioListaWrSteam[] = $usuarioListaSteam[$pos];
+					// $usuarioListaWrDiscord[] = $usuarioListaDiscord[$pos];
+					// echo "steamid64=\"" . $usuarioListaSteam[$pos] . "\", discord_id=\"" . $usuarioListaDiscord[$pos] . "\"" . PHP_EOL;
+					// $discord->guild->addGuildMemberRole(['guild.id' => $discordController->guild_id, 'user.id' => intval($usuarioListaDiscord[$pos]), 'role.id' => $discordController->role_id_world_record]);
 				}
 			}
 		} catch (Exception $e) {
 			echo "Error $value: $e";
+		}
+
+		$after = 0;
+		while (1)
+		{
+			$lista = $discord->guild->listGuildMembers(['guild.id' => $discordController->guild_id, 'limit' => 1000, 'after' => $after]);
+
+			foreach ($lista as $row)
+			{
+				// Si está en la lista de WR
+				if (in_array($row->user->id, $usuarioListaWrDiscord))
+				{
+					// Si no tiene el rol correspondiente
+					if (!in_array($discordController->role_id_world_record, $row->roles))
+					{
+						// Añadir rol
+						$discord->guild->addGuildMemberRole(['guild.id' => $discordController->guild_id, 'user.id' => $row->user->id, 'role.id' => $discordController->role_id_world_record]);
+						$discord->channel->createMessage(['channel.id' => $discordController->channel_id_verified, 'content' => ":medal: Parece que <@{$discord_id}> ganó su primer récord mundial. ¡Felicidades!"]);
+					}
+				}
+				else
+				{
+					// Si tiene el rol correspondiente
+					if (in_array($discordController->role_id_world_record, $row->roles))
+					{
+						// Quitar rol
+						$discord->guild->removeGuildMemberRole(['guild.id' => $discordController->guild_id, 'user.id' => $row->user->id, 'role.id' => $discordController->role_id_world_record]);
+					}
+				}
+
+				// $listaUsuarioDiscord[] = array('id' => $row->user->id, 'roles' => $row->roles);
+			}
+			
+			$ultimo = end($lista);
+			$after = $ultimo->user->id;
+			
+			if(count($lista) != 1000)
+				break;
+
+			sleep(2);
 		}
 	}
 }

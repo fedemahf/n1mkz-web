@@ -140,7 +140,7 @@ class Cron extends BaseController
 			$usuario_id = $row->usuario_id;
 
 			// Obtener discord_id a partir del usuario_id
-			$row = $this->db_web
+			$row = $this->db
 				->table('usuario_discord')
 				->select('discord_id')
 				// ->select('steam_id64')

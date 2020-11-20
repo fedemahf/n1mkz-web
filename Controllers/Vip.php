@@ -79,5 +79,35 @@ class Vip extends BaseController
 			if($admin_id != 0) $this->db_sourcemod_local->table('sm_admins_groups')->delete(['admin_id' => $admin_id, 'group_id' => 2]);
 			$this->db_sourcemod_local->table('sm_admins')->delete(['identity' => $steamID, 'flags' => 'a']);
 		}
+
+		// Obtener discord_id a partir del usuario_id
+		$row = $this->db_web
+			->table('usuario_discord')
+			->select('discord_id')
+			// ->select('steam_id64')
+			->where('usuario_id', $usuario_id)
+			->get()
+			->getRow();
+
+		// Si se obtuvo el discord_id...
+		if(isset($row))
+		{
+			$discordController = new App\Controllers\Discord();
+			$discord = $discordController->bot();
+			$discord_id = $row->discord_id;
+			settype($discord_id, "integer");
+
+			try {
+				$user = $discord->guild->getGuildMember(['guild.id' => $discordController->guild_id, 'user.id' => $discord_id]);
+
+				// Si tiene rol de VIP, eliminarlo
+				if(in_array($discordController->role_id_vip, $user->roles))
+				{
+					$discord->guild->removeGuildMemberRole(['guild.id' => $discordController->guild_id, 'user.id' => $discord_id, 'role.id' => $discordController->role_id_vip]);
+				}
+			} catch (Exception $e) {
+				echo "<p>" . $e->getMessage() . "</p>";
+			}
+		}
     }
 }

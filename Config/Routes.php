@@ -46,6 +46,7 @@ $routes->get('/sourcequery', 'Test_SourceQuery');
 $routes->get('/cron', 'Cron');
 $routes->cli('/cron', 'Cron');
 $routes->cli('/cron/refrescar_discord_world_record', 'Cron::refrescar_discord_world_record');
+$routes->cli('/cron/comprobar_discord_vip', 'Cron::comprobar_discord_vip');
 // $routes->get('/steam/(:any)', 'Steam::$1');
 $routes->get('/(:any)', 'Home::$1');
 

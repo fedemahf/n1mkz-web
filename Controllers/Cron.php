@@ -120,4 +120,65 @@ class Cron extends BaseController
 			sleep(2);
 		}
 	}
+
+	public function comprobar_discord_vip()
+	{
+		set_time_limit(0);
+
+		$discordController = new \App\Controllers\Discord();
+		$discord = $discordController->bot();
+		$listaVipDiscord = array();
+
+		$query =
+			$this->db
+			->table('usuario_vip')
+			->select('usuario_id')
+			->get();
+
+		foreach ($query->getResult() as $row)
+		{
+			$usuario_id = $row->usuario_id;
+
+			// Obtener discord_id a partir del usuario_id
+			$row = $this->db_web
+				->table('usuario_discord')
+				->select('discord_id')
+				// ->select('steam_id64')
+				->where('usuario_id', $usuario_id)
+				->get()
+				->getRow();
+
+			// Si se obtuvo el discord_id...
+			if (isset($row))
+			{
+				$discord_id = $row->discord_id;
+				settype($discord_id, "integer");
+				$listaVipDiscord[] = $row->discord_id;
+			}
+		}
+
+		$after = 0;
+		while (1)
+		{
+			$lista = $discord->guild->listGuildMembers(['guild.id' => $discordController->guild_id, 'limit' => 1000, 'after' => $after]);
+
+			foreach ($lista as $row)
+			{
+				// Si tiene el rol y no está en la lista
+				if (in_array($discordController->role_id_vip, $row->roles) && !in_array($row->user->id, $listaVipDiscord))
+				{
+					// Quitar rol
+					$discord->guild->removeGuildMemberRole(['guild.id' => $discordController->guild_id, 'user.id' => $row->user->id, 'role.id' => $discordController->role_id_vip]);
+				}
+			}
+			
+			$ultimo = end($lista);
+			$after = $ultimo->user->id;
+			
+			if (count($lista) != 1000)
+				break;
+
+			sleep(2);
+		}
+	}
 }

@@ -129,7 +129,6 @@ class Home extends BaseController
 							`mapname` = 'kz_continuum' OR
 							`mapname` = 'kz_gemischte_gefuehlslagen' OR
 							`mapname` = 'kz_goquicklol_v2' OR
-							`mapname` = 'kz_hemochromatosis' OR
 							`mapname` = 'kz_kzro_hardvalley' OR
 							`mapname` = 'kz_lionheart' OR
 							`mapname` = 'kz_mieszaneuczucia' OR
@@ -181,7 +180,6 @@ class Home extends BaseController
 								`Maps`.`Name` = 'kz_continuum' OR
 								`Maps`.`Name` = 'kz_gemischte_gefuehlslagen' OR
 								`Maps`.`Name` = 'kz_goquicklol_v2' OR
-								`Maps`.`Name` = 'kz_hemochromatosis' OR
 								`Maps`.`Name` = 'kz_kzro_hardvalley' OR
 								`Maps`.`Name` = 'kz_lionheart' OR
 								`Maps`.`Name` = 'kz_mieszaneuczucia' OR
@@ -233,6 +231,7 @@ class Home extends BaseController
 						(
 							`mapname` = 'kz_erratum_v2' OR
 							`mapname` = 'kz_unmake' OR
+							`mapname` = 'kz_hemochromatosis' OR
 							`mapname` = 'skz_makalaka'
 						)
 					GROUP BY
@@ -261,6 +260,7 @@ class Home extends BaseController
 							(
 								`Maps`.`Name` = 'kz_erratum_v2' OR
 								`Maps`.`Name` = 'kz_unmake' OR
+								`Maps`.`Name` = 'kz_hemochromatosis' OR
 								`Maps`.`Name` = 'skz_makalaka'
 							)
 							AND

@@ -10,6 +10,7 @@
 							<i class="btn cib-steam" style="font-size: 5rem;"></i>
 						</a>
 					</div>
+					<div class="w-100 d-block d-md-none"></div>
 					<div class="col mt-4">
 						<a href="https://twitter.com/n1mkz" target="_blank">
 							<i class="btn cib-twitter" style="font-size: 5rem;"></i>

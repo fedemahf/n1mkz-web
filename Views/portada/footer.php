@@ -15,6 +15,11 @@
 							<i class="btn cib-twitter" style="font-size: 5rem;"></i>
 						</a>
 					</div>
+					<div class="col mt-4">
+						<a href="https://www.youtube.com/channel/UCprhsAsp9UNsr3h5Yp5VAyA" target="_blank">
+							<i class="btn cib-youtube" style="font-size: 5rem;"></i>
+						</a>
+					</div>
 				</div>
 			</div>
 		</main><!-- /.container -->

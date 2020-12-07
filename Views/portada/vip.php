@@ -21,6 +21,7 @@
 									<a class="btn btn-lg btn-block btn-primary" <?=$estaConectado ? "href=\"/mercadopago/comprar/1\"" : "onclick=\"btnComprarVip()\""?>>Comprar</a>
 								</div>
 							</div>
+							<div class="w-100 d-block d-md-none mt-3"></div>
 							<div class="card shadow-sm bg-light text-dark">
 								<div class="card-header">
 									<h4 class="my-0 font-weight-normal">VIP 3 meses</h4>
@@ -30,6 +31,7 @@
 									<a class="btn btn-lg btn-block btn-primary" <?=$estaConectado ? "href=\"/mercadopago/comprar/2\"" : "onclick=\"btnComprarVip()\""?>>Comprar</a>
 								</div>
 							</div>
+							<div class="w-100 d-block d-md-none mt-3"></div>
 							<div class="card shadow-sm bg-light text-dark">
 								<div class="card-header">
 									<h4 class="my-0 font-weight-normal">VIP 6 meses</h4>

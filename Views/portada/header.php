@@ -5,8 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="Servidores de Counter-Strike: Global Offensive.">
-		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-		<meta name="generator" content="Jekyll v4.1.1">
+		<meta name="keywords" content="cs,go,csgo,counter,strike,global,offensive,kreedz,kz,kzt,gokz,skz,vnl,kztimer,n1m,n1mkz,ni,una,menos,climb">
 		<title>Ni Una Menos KZ</title>
 		<link rel="icon" type="image/png" href="/favicon.ico">
 

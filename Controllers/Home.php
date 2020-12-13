@@ -330,7 +330,7 @@ class Home extends BaseController
 
 			if(!$dataSorteo['objetivoDiscord'])
 			{
-				if($session->has('discord_id'))
+				if($this->session->has('discord_id'))
 				{
 					$dataSorteo['objetivoDiscord'] = true;
 

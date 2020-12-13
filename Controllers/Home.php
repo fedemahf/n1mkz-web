@@ -7,6 +7,7 @@ class Home extends BaseController
 	public function index()
 	{
 		$estaConectado = false;
+		$dataSorteo = array('objetivoSteam' => false, 'objetivoDiscord' => false, 'objetivoTwitter' => false, 'objetivoYouTube' => false);
 
 		if($this->session->has('steam_id'))
 		{
@@ -283,12 +284,102 @@ class Home extends BaseController
 					$dataContenido['usuario_rol_tier7'] = true;
 				}
 			}
+
+			// ----------------------------------------------------------------
+
+			$row =
+				$this
+				->db
+					->table('usuario_sorteo')
+					->where('usuario_id', $this->session->get('usuario_id'))
+				->get()
+				->getRow();
+
+			if(isset($row))
+			{
+				if($row->discord == 1)
+				{
+					$dataSorteo['objetivoDiscord'] = true;
+				}
+				
+				if($row->steam == 1)
+				{
+					$dataSorteo['objetivoSteam'] = true;
+				}
+				
+				if($row->twitter == 1)
+				{
+					$dataSorteo['objetivoTwitter'] = true;
+				}
+				
+				if($row->youtube == 1)
+				{
+					$dataSorteo['objetivoYouTube'] = true;
+				}
+			}
+			else
+			{
+				$this->db
+					->table('usuario_sorteo')
+					->insert(
+						array(
+							'usuario_id' => $row->usuario_id
+						)
+					);
+			}
+
+			if(!$dataSorteo['objetivoDiscord'])
+			{
+				if($session->has('discord_id'))
+				{
+					$dataSorteo['objetivoDiscord'] = true;
+
+					$this->db
+						->table('usuario_sorteo')
+						->set('discord', 1)
+						->where('usuario_id', $this->session->get('usuario_id'))
+						->update();
+				}
+			}
+
+			if(!$dataSorteo['objetivoSteam'])
+			{
+				$url = "https://steamcommunity.com/groups/n1mkz/memberslistxml/?xml=1";
+
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $url);
+				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				$data = curl_exec($ch);
+
+				// Comprobar si occurió algún error
+				if(!curl_errno($ch))
+				{
+					$xml = simplexml_load_string($data);
+					$members = $xml->members->steamID64;
+
+					if(in_array($steamID64, $members))
+					{
+						$dataSorteo['objetivoSteam'] = true;
+
+						$this->db
+							->table('usuario_sorteo')
+							->set('steam', 1)
+							->where('usuario_id', $this->session->get('usuario_id'))
+							->update();
+					}
+				}
+
+				curl_close($ch);
+			}
 		}
-		
+
+		$dataSorteo['estaConectado'] = $estaConectado;
 		$dataVip['estaConectado'] = $estaConectado;
 		$dataContenido['estaConectado'] = $estaConectado;
 		$dataContenido['session'] = $this->session;
-		return view('templates/portada', ['dataContenido' => $dataContenido, 'dataVip' => $dataVip]);
+		return view('templates/portada', ['dataContenido' => $dataContenido, 'dataVip' => $dataVip, 'dataSorteo' => $dataSorteo]);
 	}
 
 	public function login()

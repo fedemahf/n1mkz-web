@@ -359,15 +359,20 @@ class Home extends BaseController
 					$xml = simplexml_load_string($data);
 					$members = $xml->members->steamID64;
 
-					if(in_array($steamID64, $members))
+					foreach($members as $member)
 					{
-						$dataSorteo['objetivoSteam'] = true;
-
-						$this->db
-							->table('usuario_sorteo')
-							->set('steam', 1)
-							->where('usuario_id', $this->session->get('usuario_id'))
-							->update();
+						if($member == $steamID64)
+						{
+							$dataSorteo['objetivoSteam'] = true;
+	
+							$this->db
+								->table('usuario_sorteo')
+								->set('steam', 1)
+								->where('usuario_id', $this->session->get('usuario_id'))
+								->update();
+							
+								break;
+						}
 					}
 				}
 

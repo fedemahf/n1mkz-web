@@ -323,7 +323,7 @@ class Home extends BaseController
 					->table('usuario_sorteo')
 					->insert(
 						array(
-							'usuario_id' => $row->usuario_id
+							'usuario_id' => $this->session->get('usuario_id')
 						)
 					);
 			}

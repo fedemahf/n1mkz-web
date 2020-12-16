@@ -287,96 +287,99 @@ class Home extends BaseController
 
 			// ----------------------------------------------------------------
 
-			$row =
-				$this
-				->db
-					->table('usuario_sorteo')
-					->where('usuario_id', $this->session->get('usuario_id'))
-				->get()
-				->getRow();
-
-			if(isset($row))
+			if(ENVIRONMENT == 'development')
 			{
-				if($row->discord == 1)
-				{
-					$dataSorteo['objetivoDiscord'] = true;
-				}
-				
-				if($row->steam == 1)
-				{
-					$dataSorteo['objetivoSteam'] = true;
-				}
-				
-				if($row->twitter == 1)
-				{
-					$dataSorteo['objetivoTwitter'] = true;
-				}
-				
-				if($row->youtube == 1)
-				{
-					$dataSorteo['objetivoYouTube'] = true;
-				}
-			}
-			else
-			{
-				$this->db
-					->table('usuario_sorteo')
-					->insert(
-						array(
-							'usuario_id' => $this->session->get('usuario_id')
-						)
-					);
-			}
+				$row =
+					$this
+					->db
+						->table('usuario_sorteo')
+						->where('usuario_id', $this->session->get('usuario_id'))
+					->get()
+					->getRow();
 
-			if(!$dataSorteo['objetivoDiscord'])
-			{
-				if($this->session->has('discord_id'))
+				if(isset($row))
 				{
-					$dataSorteo['objetivoDiscord'] = true;
-
+					if($row->discord == 1)
+					{
+						$dataSorteo['objetivoDiscord'] = true;
+					}
+					
+					if($row->steam == 1)
+					{
+						$dataSorteo['objetivoSteam'] = true;
+					}
+					
+					if($row->twitter == 1)
+					{
+						$dataSorteo['objetivoTwitter'] = true;
+					}
+					
+					if($row->youtube == 1)
+					{
+						$dataSorteo['objetivoYouTube'] = true;
+					}
+				}
+				else
+				{
 					$this->db
 						->table('usuario_sorteo')
-						->set('discord', 1)
-						->where('usuario_id', $this->session->get('usuario_id'))
-						->update();
+						->insert(
+							array(
+								'usuario_id' => $this->session->get('usuario_id')
+							)
+						);
 				}
-			}
 
-			if(!$dataSorteo['objetivoSteam'])
-			{
-				$url = "https://steamcommunity.com/groups/n1mkz/memberslistxml/?xml=1";
-
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $url);
-				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-				$data = curl_exec($ch);
-
-				// Comprobar si occurió algún error
-				if(!curl_errno($ch))
+				if(!$dataSorteo['objetivoDiscord'])
 				{
-					$xml = simplexml_load_string($data);
-					$members = $xml->members->steamID64;
-
-					foreach($members as $member)
+					if($this->session->has('discord_id'))
 					{
-						if($member == $steamID64)
-						{
-							$dataSorteo['objetivoSteam'] = true;
-	
-							$this->db
-								->table('usuario_sorteo')
-								->set('steam', 1)
-								->where('usuario_id', $this->session->get('usuario_id'))
-								->update();
-							
-								break;
-						}
+						$dataSorteo['objetivoDiscord'] = true;
+
+						$this->db
+							->table('usuario_sorteo')
+							->set('discord', 1)
+							->where('usuario_id', $this->session->get('usuario_id'))
+							->update();
 					}
 				}
 
-				curl_close($ch);
+				if(!$dataSorteo['objetivoSteam'])
+				{
+					$url = "https://steamcommunity.com/groups/n1mkz/memberslistxml/?xml=1";
+
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL, $url);
+					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+					$data = curl_exec($ch);
+
+					// Comprobar si occurió algún error
+					if(!curl_errno($ch))
+					{
+						$xml = simplexml_load_string($data);
+						$members = $xml->members->steamID64;
+
+						foreach($members as $member)
+						{
+							if($member == $steamID64)
+							{
+								$dataSorteo['objetivoSteam'] = true;
+		
+								$this->db
+									->table('usuario_sorteo')
+									->set('steam', 1)
+									->where('usuario_id', $this->session->get('usuario_id'))
+									->update();
+								
+									break;
+							}
+						}
+					}
+
+					curl_close($ch);
+				}
 			}
 		}
 

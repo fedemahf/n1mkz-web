@@ -34,9 +34,11 @@
 		<script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 		<script defer src="/assets/js/portada.js"></script>
 		
+		<?php if(ENVIRONMENT == 'development'): ?>
 		<!-- views/Sorteo -->
 		<script defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		<script defer src="https://apis.google.com/js/platform.js"></script>
 		<script defer src="/assets/js/sorteo.js"></script>
+		<?php endif; ?>
 	</body>
 </html>

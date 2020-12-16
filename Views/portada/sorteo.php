@@ -1,4 +1,4 @@
-				<div class="card mb-3 d-none">
+				<div class="card mb-3">
 					<div class="card-body">
 						<h5 class="card-title">Sorteo Cyberpunk 2077</h5>
 						<p class="card-text">Sorteamos el juego <b>CYBERPUNK 2077</b> para Steam y suscripciones VIP en los servidores de Ni Una Menos KZ.</p>

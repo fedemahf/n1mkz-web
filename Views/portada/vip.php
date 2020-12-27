@@ -7,6 +7,7 @@
 							<li><b>Comando !extend.</b> Extiende un mapa durante un máximo de 20 minutos. Una sola vez por mapa para cada jugador, y cinco veces por mapa para todos los jugadores VIP.</li>
 							<li><b>Bind +noclip.</b> Posibilidad de volar por el mapa en los servidores KZTimer.</li>
 							<li><b>Slot reservado.</b> Acceso a los servidores aunque estén llenos, siempre y cuando no estén ocupados los slots reservados.</li>
+							<li><b>Servidores exclusivos.</b> Acceso a servidores que sean exclusivos para usuarios VIP.</li>
 							<li><b>Etiqueta exclusiva.</b> Etiqueta exclusiva en el nombre en los servidores KZTimer.</li>
 							<li><b>Rol en Discord.</b> Se te asignará un rol especial y desbloquearás una categoría de canales exclusiva para usuarios VIP.</li>
 						</ul>

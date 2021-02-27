@@ -92,7 +92,7 @@ class Vip extends BaseController
 		// Si se obtuvo el discord_id...
 		if(isset($row))
 		{
-			$discordController = new App\Controllers\Discord();
+			$discordController = new \App\Controllers\Discord();
 			$discord = $discordController->bot();
 			$discord_id = $row->discord_id;
 			settype($discord_id, "integer");

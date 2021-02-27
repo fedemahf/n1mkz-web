@@ -105,7 +105,7 @@ else
 <?php
 	if($session->has('discord_id'))
 	{
-		$discordController = new App\Controllers\Discord();
+		$discordController = new \App\Controllers\Discord();
 		$discord = $discordController->bot();
 		$discord_id = $session->get('discord_id');
 
